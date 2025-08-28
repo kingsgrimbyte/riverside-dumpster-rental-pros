@@ -10,10 +10,9 @@ import contactContent from "@/app/Data/content";
 const ContactInfo: any = contactContent.contactContent;
 const contentData: any = contactContent.brandsContent;
 
-
 export const metadata: Metadata = {
   title: {
-    absolute: contentData?.metaTitle,
+    absolute: contentData.metaTitle,
   },
   description: contentData.metaDescription
     ?.split("[location]")

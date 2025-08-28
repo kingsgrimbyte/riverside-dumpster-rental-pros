@@ -9,7 +9,6 @@ import ProcessWidget from "../Widgets/ProcessWidget";
 import ReviewWidget from "../Widgets/ReviewWidget";
 import Navbar from "../Navbar";
 import Link from "next/link";
-import Types from "../Widgets/Types";
 
 import contactContent from "@/app/Data/content";
 import SubdomainContent from "@/app/Data/FinalContent";
@@ -37,7 +36,6 @@ const Hero = () => {
       },
     })),
   };
-
   return (
     <div className="">
       {jsonLd && (
@@ -58,7 +56,7 @@ const Hero = () => {
               ?.split("[location]")
               .join(ContactInfo.location)
               ?.split("[phone]")
-              .join(ContactInfo.No)}.`}
+              .join(ContactInfo.No)}`}
           />
           {/* poster */}
           {/* Section 1 */}
@@ -89,7 +87,6 @@ const Hero = () => {
           {/* Section 1 */}
           {/* TYPES */}
           <Service />
-          <Types />
           {/* TYPES*/}
           <Affordable />
           {/* Section 4 */}
@@ -133,7 +130,7 @@ const Hero = () => {
                 <div className="mx-6 mt-4 flex h-fit w-auto flex-wrap items-center justify-center gap-4 md:mx-10">
                   {slugs
                     .sort()
-                    .slice(0, 21)
+                    .slice(0, 15)
                     .map((City: any, index: number) => {
                       return (
                         <div className="" key={index}>
@@ -168,7 +165,7 @@ const Hero = () => {
           <div className="mt-14 md:mt-20"></div>
           {/* CTA */}
           {/* FAQ */}
-          <Faq data={homeData?.faq} />
+           <Faq data={homeData?.faq}/>
           {/* FAQ */}
           {/* Review */}
           <ReviewWidget />

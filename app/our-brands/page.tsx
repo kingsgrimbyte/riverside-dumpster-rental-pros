@@ -11,7 +11,7 @@ const contentData:any[any] = brandsContent.brandsContent;
 
 export const metadata: Metadata = {
   title: {
-    absolute: contentData?.metaTitle,
+    absolute: contentData.metaTitle,
   },
   description: contentData.metaDescription
     ?.split("[location]")

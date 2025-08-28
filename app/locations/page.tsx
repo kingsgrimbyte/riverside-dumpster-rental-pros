@@ -8,7 +8,6 @@ import contactContent from "@/app/Data/content";
 
 const ContactInfo: any = contactContent.contactContent;
 const contentData: any = contactContent.locationPageContent;
-
 export const metadata: Metadata = {
   title: {
     absolute: contentData.metaTitle,

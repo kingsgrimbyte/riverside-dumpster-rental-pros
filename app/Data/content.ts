@@ -1,13 +1,10 @@
 import aboutData from "@/components/Content/about.json";
-import blogDataJson  from "@/components/Content/blogs.json";
-import blogCategoryMetaJson  from "@/components/Content/blogsCategoryMetas.json";
 import contactPageDataJson  from "@/components/Content/contact.json";
 import contactDataJson from "@/components/Content/ContactInfo.json";
 import homePageDataJson  from "@/components/Content/home.json";
 import locationPageDataJson   from "@/components/Content/location.json";
 import brandsDataJson  from "@/components/Content/ourBrand.json";
 import servicePageDataJson  from "@/components/Content/servicePage.json";
-import typesJson  from "@/components/Content/typesPage.json";
 
 
 // Contact Content
@@ -22,12 +19,10 @@ const {
   service = undefined,
   location = undefined,
   zipCode = undefined,
-  bannerImage = undefined,
+  bannerImage = "",
   logoImage = "",
-  favicon = "",
+  favicon = undefined,
   googleAnalytics = undefined,
-  minor = "#fed700",
-  main = "#283143",
 } = (contactDataJson as any) || {};
 
 const contactContent: any = {
@@ -45,8 +40,6 @@ const contactContent: any = {
   logoImage,
   favicon,
   googleAnalytics,
-  minor,
-  main
 };
 
 //About Content
@@ -76,14 +69,7 @@ const aboutContent: any = {
   areaweserveSection,
 };
 
-// Blogs Content
-const blogContent: any = {
-  posts: Array.isArray(blogDataJson) ? blogDataJson : [],
-};
 
-// Blogs Category Content
-const blogCategoryMetaMap: any =
-  (blogCategoryMetaJson as any) || {};
 
 // Contact Page Content
 const {
@@ -240,28 +226,6 @@ const servicePageContent: any = {
   serviceData,
 };
 
-// Types Page Content
-const {
-  metaTitle: portableMetaTitle = undefined,
-  metaDescription: portableMetaDescription = undefined,
-  bannerQuote: portableBannerQuote = undefined,
-  bannerImage: portableBannerImage = undefined,
-  h1Banner: portableH1Banner = undefined,
-  p1Banner: portableP1Banner = "",
-  serviceTitle: portableServiceTitle = undefined,
-  serviceData:typeserviceData = { title: "", p: "", lists: [] },
-} = (typesJson as any) || {};
-const typesJsonContent: any = {
-  metaTitle: portableMetaTitle,
-  metaDescription: portableMetaDescription,
-  bannerQuote: portableBannerQuote,
-  bannerImage: portableBannerImage,
-  h1Banner: portableH1Banner,
-  p1Banner: portableP1Banner,
-  serviceTitle: portableServiceTitle,
-  serviceData:typeserviceData,
-};
-
 
 // Utility function to replace placeholders in strings
 function replacePlaceholders(obj: any, ContactInfo: any): any {
@@ -287,25 +251,19 @@ const ContactInfo = contactContent;
 const content: {
   aboutContent: any;
   contactContent: any;
-  blogContent: any;
-  blogCategoryMetaMap: any;
   contactPageContent: any;
   homePageContent: any;
   locationPageContent: any;
   brandsContent: any;
   servicePageContent: any;
-  typesJsonContent: any;
 } = {
   aboutContent: replacePlaceholders(aboutContent, ContactInfo),
   contactContent: replacePlaceholders(contactContent, ContactInfo),
-  blogContent: replacePlaceholders(blogContent, ContactInfo),
-  blogCategoryMetaMap: replacePlaceholders(blogCategoryMetaMap, ContactInfo),
   contactPageContent: replacePlaceholders(contactPageContent, ContactInfo),
   homePageContent: replacePlaceholders(homePageContent, ContactInfo),
   locationPageContent: replacePlaceholders(locationPageContent, ContactInfo),
   brandsContent: replacePlaceholders(brandsContent, ContactInfo),
   servicePageContent: replacePlaceholders(servicePageContent, ContactInfo),
-  typesJsonContent: replacePlaceholders(typesJsonContent, ContactInfo),
 };
 
 export default content;

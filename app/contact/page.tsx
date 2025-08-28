@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import React from "react";
 import Page from "../components/Contact/Page";
 import Navbar from "../components/Navbar";
-
 import contactContent from "@/app/Data/content";
 
 const ContactInfo: any = contactContent.contactContent;

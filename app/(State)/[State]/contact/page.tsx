@@ -1,11 +1,8 @@
-import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { BiMailSend, BiSolidPhone, BiSolidTime } from "react-icons/bi";
 import { FaPhoneVolume } from "react-icons/fa6";
 import Banner from "@/app/components/Home/Banner";
-import Navbar from "@/app/components/Navbar";
 import NavbarState from "@/app/components/State/NavbarState";
 import { headers } from "next/headers";
 
@@ -15,7 +12,6 @@ import subdomainContent from "@/app/Data/FinalContent";
 const content: any = subdomainContent.subdomainData;
 const ContactInfo: any = contactContent.contactContent;
 const contentData: any = contactContent.contactPageContent;
-
 export function generateMetadata({ params }: { params: { services: string } }) {
   const headersList = headers();
   const subdomain = headersList.get("x-subdomain") as

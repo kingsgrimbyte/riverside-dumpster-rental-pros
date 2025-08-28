@@ -14,21 +14,14 @@ const Navbar = () => {
   const handleNav = () => {
     setNav(!nav);
   };
-  const navLinks = [
-    "Home",
-    "Locations",
-    "Services",
-    "About",
-    "Blogs",
-    "Contact",
-  ];
+  const navLink =["Home", "Locations", "Services", "About", "Contact"] 
   return (
     <>
-      <nav className=" sticky   top-0 z-[999] flex h-[5rem]  w-screen items-center justify-center border-y-2 bg-white px-4 md:w-full md:px-0">
+      <nav className=" sticky   top-0 z-[999] flex h-[5rem]  w-screen items-center justify-center border-y-2 bg-white px-4 md:w-full md:px-0 !overflow-hidden">
         <div className=" relative w-screen md:w-full md:max-w-[1280px] md:px-10  md:py-4">
           <div className="mt-0 flex flex-row justify-between space-x-8 rounded-2xl rounded-tr-none px-4 text-sm font-medium md:mr-6 md:justify-around">
             <div className="flex ">
-              <Link href="/" aria-label="Home">
+              <Link href={ContactInfo?.baseUrl} aria-label="Home">
                 <Image
                   src={ContactInfo?.logoImage}
                   className=" h-full w-40 object-contain md:mr-3 md:w-56 "
@@ -41,21 +34,23 @@ const Navbar = () => {
               </Link>
             </div>
             <ul className=" mr-6 mt-0 hidden   flex-row items-center justify-around space-x-8 text-lg font-medium md:flex ">
-              {navLinks.map((item) => (
-                <li key={item}>
-                  <Link
-                    href={
-                      item.toLowerCase() === "home"
-                        ? `/`
-                        : `/${item.toLowerCase().split(" ").join("-")}`
-                    }
-                    className="under  text-black decoration-minor decoration-2  duration-150 ease-in-out hover:underline "
-                    aria-current="page"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              {navLink.map(
+                (item) => (
+                  <li key={item}>
+                    <Link
+                      href={
+                        item.toLowerCase() === "home"
+                          ? `/`
+                          : `/${item.toLowerCase().split(" ").join("-")}`
+                      }
+                      className="under  text-black decoration-minor decoration-2  duration-150 ease-in-out hover:underline "
+                      aria-current="page"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                ),
+              )}
             </ul>
             <div className="  hidden items-center justify-center lg:flex   ">
               <a id="cta-id" href={`tel:${ContactInfo.tel}`}>
@@ -88,22 +83,24 @@ const Navbar = () => {
             <div className="">
               {/* <div className="text-xl font-bold ">Menu</div> */}
               <ul className="relative mt-5 flex flex-col gap-6 text-4xl font-semibold ">
-                {navLinks.map((item) => (
-                  <li key={item}>
-                    <Link
-                      onClick={handleNav}
-                      href={
-                        item.toLowerCase() === "home"
-                          ? `/`
-                          : `/${item.toLowerCase().split(" ").join("-")}`
-                      }
-                      className="under font-semibold text-white decoration-main decoration-2  duration-150 ease-in-out hover:underline "
-                      aria-current="page"
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                ))}
+                {navLink.map(
+                  (item) => (
+                    <li key={item}>
+                      <Link
+                        onClick={handleNav}
+                        href={
+                          item.toLowerCase() === "home"
+                            ? `/`
+                            : `/${item.toLowerCase().split(" ").join("-")}`
+                        }
+                        className="under font-semibold text-white decoration-main decoration-2  duration-150 ease-in-out hover:underline "
+                        aria-current="page"
+                      >
+                        {item}
+                      </Link>
+                    </li>
+                  ),
+                )}
               </ul>
             </div>
           </div>

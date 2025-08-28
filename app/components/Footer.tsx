@@ -2,13 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { RiMailFill, RiMapPin2Fill } from "react-icons/ri";
 import { headers } from "next/headers";
+
 import subdomainContent from "@/app/Data/FinalContent";
 import contactContent from "@/app/Data/content";
 
 const SubDomainData: any = subdomainContent.subdomainData;
 const ContactInfo: any = contactContent.contactContent;
 const content: any = contactContent.servicePageContent;
-
 const Footer = () => {
   const headersList = headers();
   const subdomain = headersList.get("x-subdomain") as string | null;
@@ -21,7 +21,7 @@ const Footer = () => {
       ? (subdomainData as { address: string }).address
       : ContactInfo.address;
   return (
-    <div className=" flex w-full items-center justify-center bg-[#eeecec]">
+    <div className="flex w-full items-center justify-center bg-[#eeecec]">
       <div className=" flex w-full  items-center justify-center overflow-hidden">
         <div className=" flex w-full flex-col items-center  justify-center md:mt-8 md:min-w-[650px] ">
           <div className="flex w-fit flex-col justify-center gap-2 px-6 md:mt-8  md:w-full  md:flex-row md:items-start md:justify-around md:px-20 ">
@@ -32,11 +32,11 @@ const Footer = () => {
                 width={10000}
                 className="w-full object-cover "
                 alt={
-                  ContactInfo.logoImage.split("/").pop()?.split(".")[0] ||
+                  ContactInfo.logoImage?.split("/").pop()?.split(".")[0] ||
                   "image"
                 }
                 title={
-                  ContactInfo.logoImage.split("/").pop()?.split(".")[0] ||
+                  ContactInfo.logoImage?.split("/").pop()?.split(".")[0] ||
                   "image"
                 }
               />
@@ -46,9 +46,6 @@ const Footer = () => {
                 Our Company
               </div>
               <div className="mt-6 flex  flex-col gap-2">
-                <Link href="/types">
-                  <p className="">Types of Dumpsters </p>
-                </Link>
                 <Link href="/about">
                   <p className="">About </p>
                 </Link>
@@ -57,9 +54,6 @@ const Footer = () => {
                 </Link>
                 <Link href="/our-brands">
                   <p className="">Our Brands </p>
-                </Link>
-                <Link href={`${ContactInfo?.baseUrl}blogs`}>
-                  <p className="">Blogs </p>
                 </Link>
               </div>
             </div>
@@ -73,10 +67,7 @@ const Footer = () => {
                     list.title && (
                       <Link href={`/services/${list.slug}`} key={list.title}>
                         <p className="">
-                          {list.title?.replace(
-                            `in ${ContactInfo.location}`,
-                            " ",
-                          )}
+                          {list.title?.replace(" in [location]", " ")}
                         </p>
                       </Link>
                     ),
@@ -84,7 +75,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="flex flex-col items-center justify-center shadow-sm md:w-80    ">
-              <div className=" w-fit border-b-2 border-minor  text-3xl font-semibold">
+              <div className=" w-fit border-b-2 border-minor  text-3xl font-semibold text-main">
                 REACH OUT TO US
               </div>
 
@@ -108,7 +99,7 @@ const Footer = () => {
                     </Link>
                   </div>
                 </div>
-                {address && (
+                 {address && (
                   <div className="mt-2 ">
                     <div className="flex gap-4">
                       <RiMapPin2Fill className="text-cream  mt-1 w-8 text-lg" />
@@ -132,7 +123,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="mx-9 mt-10 flex border-t-2 border-minor text-center  text-lg text-main ">
+          <div className="mx-9 mb-14 mt-10 flex border-t-2 border-minor text-center  text-lg text-main ">
             <p className="my-2">
               Copyright ©2025 {ContactInfo?.name}, All Right Reserved |
               <Link

@@ -82,10 +82,6 @@ export async function GET() {
     <lastmod>${now}</lastmod>
   </sitemap>
   <sitemap>
-    <loc>${baseUrl}sitemap-blogs.xml</loc>
-    <lastmod>${now}</lastmod>
-  </sitemap>
-  <sitemap>
     <loc>${baseUrl}sitemap-subdomains.xml</loc>
     <lastmod>${now}</lastmod>
   </sitemap>
