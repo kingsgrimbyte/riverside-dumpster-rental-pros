@@ -4,14 +4,15 @@ import Service from "@/app/components/Home/Service";
 import { Metadata } from "next";
 import NavbarState from "@/app/components/State/NavbarState";
 import { headers } from "next/headers";
+import Navbar from "@/app/components/Navbar";
+import Types from "@/app/components/Widgets/Types";
 
 import contactContent from "@/app/Data/content";
 import subdomainContent from "@/app/Data/FinalContent";
 
 const ContactInfo: any = contactContent.contactContent;
-const contentData: any = contactContent.servicePageContent;
+const contentData: any = contactContent.typesJsonContent;
 const content: any = subdomainContent.subdomainData;
-
 
 export function generateMetadata({ params }: { params: { services: string } }) {
   const headersList = headers();
@@ -30,13 +31,19 @@ export function generateMetadata({ params }: { params: { services: string } }) {
   const Data: any = content[subdomain];
   return {
     title: {
-      absolute: contentData.h1Banner?.split(ContactInfo.location).join(Data?.name || ContactInfo.location)
-      ?.split("[phone]").join(ContactInfo.No),
+      absolute: contentData.h1Banner
+        ?.split(ContactInfo.location)
+        .join(Data?.name || ContactInfo.location)
+        ?.split("[phone]")
+        .join(ContactInfo.No),
     },
-    description: contentData.metaDescription?.split(ContactInfo.location).join(Data?.name || ContactInfo.location)
-    ?.split("[phone]").join(ContactInfo.No),
+    description: contentData.metaDescription
+      ?.split(ContactInfo.location)
+      .join(Data?.name || ContactInfo.location)
+      ?.split("[phone]")
+      .join(ContactInfo.No),
     alternates: {
-      canonical: `https://${Data.slug}.${ContactInfo.host}/services/`,
+      canonical: `https://${Data.slug}.${ContactInfo.host}/types/`,
     },
   };
 }
@@ -60,20 +67,29 @@ const page = () => {
       <NavbarState />
       <div>
         <Banner
-          h1={contentData.h1Banner?.split(ContactInfo.location).join(Data?.name || ContactInfo.location)
-            ?.split("[phone]").join(ContactInfo.No)}
+          h1={contentData.h1Banner
+            ?.split(ContactInfo.location)
+            .join(Data?.name || ContactInfo.location)
+            ?.split("[phone]")
+            .join(ContactInfo.No)}
           image={contentData.bannerImage}
-          header={contentData.bannerQuote?.split(ContactInfo.location).join(Data?.name || ContactInfo.location)
-            ?.split("[phone]").join(ContactInfo.No)}
-          p1={contentData.metaDescription?.split(ContactInfo.location).join(Data?.name || ContactInfo.location)
-            ?.split("[phone]").join(ContactInfo.No)}
+          header={contentData.bannerQuote
+            ?.split(ContactInfo.location)
+            .join(Data?.name || ContactInfo.location)
+            ?.split("[phone]")
+            .join(ContactInfo.No)}
+          p1={contentData.metaDescription
+            ?.split(ContactInfo.location)
+            .join(Data?.name || ContactInfo.location)
+            ?.split("[phone]")
+            .join(ContactInfo.No)}
         />
 
         {/* Content 1 */}
         <div className="">
           {/* <Affordable /> */}
-          <Service value={subdomain}/>
-          {/* <TypeOfDumpster /> */}
+          <Types value={Data?.name} />
+          <Service value={subdomain} />
         </div>
         {/* Content 1 */}
       </div>

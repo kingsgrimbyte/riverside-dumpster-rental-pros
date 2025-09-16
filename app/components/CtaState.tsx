@@ -1,8 +1,7 @@
+import Image from "next/image";
 import React from "react";
-import contactContent from "@/app/Data/content";
-
-const ContactInfo: any = contactContent.contactContent;
-
+import ContactInfo from "@/components/Content/ContactInfo.json";
+import Link from "next/link";
 
 
 const CtaState = () => {

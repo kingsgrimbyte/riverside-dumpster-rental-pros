@@ -1,9 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import contactContent from "@/app/Data/content";
-
-const ContactInfo: any = contactContent.contactContent;
-
+import ContactInfo from "@/components/Content/ContactInfo.json";
 import { FiPhoneCall } from "react-icons/fi";
 
 const CtaWidget = () => {

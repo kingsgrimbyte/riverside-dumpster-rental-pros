@@ -14,7 +14,7 @@ const Navbar = () => {
   const handleNav = () => {
     setNav(!nav);
   };
-  const navLink =["Home", "Locations", "Services", "About", "Contact"] 
+  const navLinks=["Home", "Locations", "Services", "About", "Contact"]
   return (
     <>
       <nav className=" sticky   top-0 z-[999] flex h-[5rem]  w-screen items-center justify-center border-y-2 bg-white px-4 md:w-full md:px-0">
@@ -34,7 +34,7 @@ const Navbar = () => {
               </Link>
             </div>
             <ul className=" mr-6 mt-0 hidden   flex-row items-center justify-around space-x-8 text-lg font-medium md:flex ">
-              {navLink.map(
+              {navLinks.map(
                 (item) => (
                   <li key={item}>
                     <Link
@@ -79,11 +79,12 @@ const Navbar = () => {
               : "absolute bottom-0 left-[-100%] right-0 top-0 flex   h-screen w-full items-center justify-center border border-main bg-main text-4xl text-white  duration-300 ease-in sm:hidden"
           }
         >
+          
           <div className=" flex h-full w-full flex-col justify-around p-6 py-10 font-medium">
             <div className="">
               {/* <div className="text-xl font-bold ">Menu</div> */}
               <ul className="relative mt-5 flex flex-col gap-6 text-4xl font-semibold ">
-                {navLink.map(
+                {navLinks.map(
                   (item) => (
                     <li key={item}>
                       <Link

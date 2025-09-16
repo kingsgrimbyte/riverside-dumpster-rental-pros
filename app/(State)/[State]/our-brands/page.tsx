@@ -10,12 +10,13 @@ import contactContent from "@/app/Data/content";
 const ContactInfo: any = contactContent.contactContent;
 const contentData: any = contactContent.brandsContent;
 
+
 export const metadata: Metadata = {
   title: {
-    absolute: contentData.metaTitle,
+    absolute: contentData?.metaTitle,
   },
   description: contentData.metaDescription
-    ?.split("[location]")
+    ?.split(ContactInfo.location)
     .join(ContactInfo.location)
     ?.split("[phone]")
     .join(ContactInfo.No),
@@ -29,14 +30,14 @@ const page = () => {
       <NavbarState />
       <Banner
         h1={contentData.h1Banner
-          .split("[location]")
+          .split(ContactInfo.location)
           .join(ContactInfo.location)
           ?.split("[phone]")
           .join(ContactInfo.No)}
         image={contentData.bannerImage}
         header=""
         p1={contentData.metaDescription
-          .split("[location]")
+          .split(ContactInfo.location)
           .join(ContactInfo.location)
           ?.split("[phone]")
           .join(ContactInfo.No)}

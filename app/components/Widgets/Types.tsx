@@ -1,54 +1,66 @@
 import Image from "next/image";
 import React from "react";
-import data1 from "@/components/Content/servicePage.json";
+import Link from "next/link";
+import { MdDoubleArrow } from "react-icons/md";
+import contactContent from "@/app/Data/content";
 
-const Types = () => {
-  const data = data1.serviceData;
+const ContactInfo: any = contactContent.contactContent;
+const data1: any = contactContent.typesJsonContent;
+
+const Types = ({value}:{value?:any}) => {
+  // console.log(value)
+  const data = JSON.parse(
+    JSON.stringify(data1.serviceData)
+      .split(ContactInfo.location)
+      .join(value || ContactInfo.location)
+      .split("[phone]")
+      .join(ContactInfo.No),
+  );
+  // const data = data1.serviceData;
   return (
-    <div className="mt-16 px-4 md:px-24">
-      <h2 className="text-center text-3xl font-extrabold text-main">
-        {data.title}
-      </h2>
-      <p className="mt-4 text-center text-lg">{data.p}</p>
-
-      <div className=" my-16 hidden  grid-cols-1 content-center  justify-center gap-10 sm:grid-cols-2 lg:grid lg:grid-cols-4 ">
+   <div className=" px-4  md:px-10 pt-10">
+   
+        <h2 className="text-first text-center text-3xl font-bold text-main">
+          {data.title}
+        </h2>
+        <div
+          className="mt-4 px-4  text-center "
+          dangerouslySetInnerHTML={{ __html: data.p }}
+        ></div>
+      <div className="mb-10  hidden flex-wrap justify-center   gap-10 md:flex">
         {data.lists?.map((items: any, index: number) => (
-          <div key={index} className=" flex items-center justify-center">
-            <div className="group h-80 w-80 [perspective:1000px] ">
-              <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] ">
-                <div className="absolute inset-0 overflow-hidden rounded-xl [backface-visibility:hidden]">
-                  <div className="absolute  bottom-0 left-0 right-0 top-0 flex items-center justify-center bg-black/60 p-4 text-center text-3xl font-bold text-white  ">
-                    {items.title}
-                  </div>
-                  <Image
-                    height={1000}
-                    width={1000}
-                    className="h-full w-full rounded-xl object-cover shadow-xl shadow-black/40"
-                    src={`/${items.imageUrl}`}
-                    alt={items.title}
-                    loading="lazy"
-                  />
-                </div>
-                <div className="absolute inset-0 h-full w-full overflow-hidden  rounded-xl bg-main text-center text-slate-200 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                  {/* <Image
-                    height={1000}
-                    width={1000}
-                    className="absolute bottom-0 left-0 right-0 top-0 h-full  w-full rounded-xl object-cover shadow-xl shadow-black/40 [transform:rotateY(180deg)]"
-                    src={`/${items.imageUrl}`}
-                    alt={items.title}
-                    loading="lazy"
-                  /> */}
-                  <div className="relative flex min-h-full flex-col items-center justify-center ">
-                    <div className="mt-3 px-4 text-lg">{items.description}</div>
-                  </div>
-                </div>
-              </div>
+          <div
+            className=" 1 mt-10 w-[22rem] overflow-hidden rounded-3xl border  border-gray-300 shadow-md duration-300 ease-in "
+            key={index}
+          >
+            <div className="flex h-60 justify-center object-cover">
+              <Image
+                aria-hidden="true"
+                src={`${items.imageUrl}`}
+                alt={`${items.imageUrl.split("/").pop()?.split(".")[0] || "image"[0]}`}
+                title={`${items.imageUrl.split("/").pop()?.split(".")[0] || "image"[0]}`}
+                width="900"
+                height="550"
+                className="object-cover"
+              />
             </div>
+            <Link href={`/types/${items.slug}`}>
+            <h3
+              className={`1 mt-4 flex justify-start gap-2  px-4  text-xl font-bold text-main group`}
+            >
+              <MdDoubleArrow className="text-bold text-3xl group-hover:translate-x-2 transition group-hover:text-main/70" />
+              {items.title}
+            </h3>
+            </Link>
+            <div
+              className=" p-4 text-justify text-base pl-4"
+              dangerouslySetInnerHTML={{ __html: items.description }}
+            ></div>
           </div>
         ))}
       </div>
-      <div className="block px-4 py-5 lg:hidden">
-        {data.lists?.map((item: any) => (
+      <div className="block md:hidden pb-10">
+        {data.lists.map((item: any) => (
           <div
             className=" rounded-2xl border   p-3 shadow-xl"
             key={item?.title}
@@ -57,17 +69,17 @@ const Types = () => {
               <div className="h-14 w-14 overflow-hidden rounded-full object-cover">
                 <Image
                   aria-hidden="true"
-                  src={`/${item.imageUrl}`}
-                  alt={`${item.imageUrl.split(".")}`}
-                  title={`${item.imageUrl.split(".")}`}
+                  src={`${item.imageUrl}`}
+                  alt={`${item.imageUrl.split("/").pop()?.split(".")[0] || "image"}`}
+                  title={`${item.imageUrl.split("/").pop()?.split(".")[0] || "image"}`}
                   width="900"
                   height="550"
                   className="h-14 w-14 object-cover "
                 />
               </div>
-              <h3 className="w-[75%]  text-lg font-bold text-main">
+              <div className="w-[75%]  text-lg font-bold text-main">
                 {item.title}{" "}
-              </h3>
+              </div>
             </div>
           </div>
         ))}

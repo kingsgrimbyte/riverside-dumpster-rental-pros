@@ -3,11 +3,12 @@ import React from "react";
 import Service from "@/app/components/Home/Service";
 import { Metadata } from "next";
 import Navbar from "../components/Navbar";
+import Types from "../components/Widgets/Types";
 
 import contactContent from "@/app/Data/content";
 
 const ContactInfo: any = contactContent.contactContent;
-const contentData: any = contactContent.servicePageContent;
+const contentData: any = contactContent.typesJsonContent;
 
 export const metadata: Metadata = {
   title: {
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   description: contentData.metaDescription?.split("[location]").join( ContactInfo.location)
   ?.split("[phone]").join(ContactInfo.No),
   alternates: {
-    canonical: `${ContactInfo.baseUrl}services/`,
+    canonical: `${ContactInfo.baseUrl}types/`,
   },
 };
 const page = () => {
@@ -37,7 +38,8 @@ const page = () => {
         {/* Content 1 */}
         <div className="">
           {/* <Affordable /> */}
-          <Service />
+          <Types />
+          <Service/>
           {/* <TypeOfDumpster /> */}
         </div>
         {/* Content 1 */}
