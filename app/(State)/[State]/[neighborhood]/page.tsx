@@ -112,17 +112,16 @@ export async function generateMetadata({ params }: NeighborhoodPageProps) {
   }
   const cityData: any = content;
   const parentCityData = cityData[State];
-  
+
   // Format neighborhood name for display
   const neighborhoodName = neighborhood
-  .split("-")
-  .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
-  .join(" ");
-  const staetName = State
-  .split("-")
-  .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
-  .join(" ");
-  
+    .split("-")
+    .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+  const staetName = State.split("-")
+    .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
   // Create neighborhood-specific metadata using parent city data
   const title =
     parentCityData?.metaTitle
@@ -144,7 +143,7 @@ export async function generateMetadata({ params }: NeighborhoodPageProps) {
     title,
     description,
     alternates: {
-      canonical: `https://${State}.${ContactInfo.host}/neighborhoods/${neighborhood}/`,
+      canonical: `https://${State}.${ContactInfo.host}/${neighborhood}/`,
     },
   };
 }
@@ -184,16 +183,18 @@ export default async function NeighborhoodPage({
 
   // Get parent city data
   const parentCityData = cityData[State];
-  
+
   // Validate neighborhood exists in the city's neighborhoods list
   if (!parentCityData?.neighbourhoods) {
     notFound();
   }
-  
+
   const validNeighborhoods = parentCityData.neighbourhoods
     .split("|")
-    .map((n: string) => n.trim().toLowerCase().replace(/\.+$/, "").replace(/\s+/g, "-"));
-  
+    .map((n: string) =>
+      n.trim().toLowerCase().replace(/\.+$/, "").replace(/\s+/g, "-"),
+    );
+
   if (!validNeighborhoods.includes(neighborhood)) {
     notFound();
   }
@@ -203,8 +204,7 @@ export default async function NeighborhoodPage({
     .split("-")
     .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
-  const stateName = State
-    .split("-")
+  const stateName = State.split("-")
     .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
   const ContentData = JSON.parse(
@@ -274,7 +274,7 @@ export default async function NeighborhoodPage({
           .join(ContentData?.name || ContactInfo.location)
           ?.split("[phone]")
           .join(ContactInfo.No)}`,
-        url: `https://${State}.${ContactInfo.host}/neighborhoods/${neighborhood}`,
+        url: `https://${State}.${ContactInfo.host}/${neighborhood}`,
         aggregateRating: {
           "@type": "AggregateRating",
           reviewCount: 7,
@@ -629,32 +629,38 @@ export default async function NeighborhoodPage({
                 ques={`Neighborhoods we serve in  ${ContentData?.name}`}
                 ans={ContentData?.neighbourhoods?.split("|")}
                 slug={State}
+                neighborhood={true}
               />
             </div>
             <div className="mt-28 hidden items-center justify-start md:mx-40 md:block ">
               <div className="text-center text-3xl font-bold">
                 <p className="text-main">
-                  Neighborhoods we serve in {ContentData?.name}
+                  Other Neighborhoods we serve in {parentCityData?.name}
                 </p>
               </div>
               <div className="mx-10 mt-4 flex h-fit w-auto flex-wrap justify-center gap-4">
-                {ContentData?.neighbourhoods?.split("|").map((item: any) => (
-                  <div className="" key={item}>
-                    <Link
-                      href={`/neighborhoods/${
-                        item
-                          .trim()
-                          .toLowerCase()
-                          .replace(/\.+$/, "") // remove trailing dots
-                          .replace(/\s+/g, "-") // replace spaces with hyphens
-                      }`}
-                    >
-                      <p className="border bg-minor px-2 py-1 text-white duration-100 ease-in-out hover:text-main">
-                        {item}
-                      </p>
-                    </Link>
-                  </div>
-                ))}
+                {ContentData?.neighbourhoods
+                  ?.split("|")
+                  .filter(
+                    (item: string) => item.trim() !== ContentData?.name?.trim(),
+                  )
+                  .map((item: string) => (
+                    <div className="" key={item}>
+                      <Link
+                        href={`/${
+                          item
+                            .trim()
+                            .toLowerCase()
+                            .replace(/\.+$/, "") // remove trailing dots
+                            .replace(/\s+/g, "-") // replace spaces with hyphens
+                        }`}
+                      >
+                        <p className="border bg-minor px-2 py-1 text-white duration-100 ease-in-out hover:text-main">
+                          {item}
+                        </p>
+                      </Link>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
@@ -690,39 +696,39 @@ export default async function NeighborhoodPage({
   );
 }
 
-export async function generateStaticParams() {
-  let content: any = {};
-  try {
-    const data = await getSubdomainData();
-    if (data && data.subdomains) {
-      // Convert array back to object with slug as key
-      content = data.subdomains.reduce((acc: any, item: any) => {
-        if (item.slug) {
-          acc[item.slug] = item;
-        }
-        return acc;
-      }, {});
-    }
-  } catch (e) {
-    // Fallback to static content if API fails
-    content = subdomainContent.subdomainData;
-  }
+// export async function generateStaticParams() {
+//   let content: any = {};
+//   try {
+//     const data = await getSubdomainData();
+//     if (data && data.subdomains) {
+//       // Convert array back to object with slug as key
+//       content = data.subdomains.reduce((acc: any, item: any) => {
+//         if (item.slug) {
+//           acc[item.slug] = item;
+//         }
+//         return acc;
+//       }, {});
+//     }
+//   } catch (e) {
+//     // Fallback to static content if API fails
+//     content = subdomainContent.subdomainData;
+//   }
 
-  const cityData: any = content;
-  const neighborhoods: any[] = [];
+//   const cityData: any = content;
+//   const neighborhoods: any[] = [];
 
-  // Extract neighborhoods only from cities that have valid slugs and neighborhoods
-  Object.values(cityData).forEach((city: any) => {
-    if (city.slug && city.neighbourhoods) {
-      const cityNeighborhoods = city.neighbourhoods
-        .split("|")
-        .map((neighName: string) => ({
-          State: city.slug,
-          neighborhood: neighName.trim().toLowerCase().replace(/\s+/g, "-").replace(/\.+$/, ""),
-        }));
-      neighborhoods.push(...cityNeighborhoods);
-    }
-  });
+//   // Extract neighborhoods only from cities that have valid slugs and neighborhoods
+//   Object.values(cityData).forEach((city: any) => {
+//     if (city.slug && city.neighbourhoods) {
+//       const cityNeighborhoods = city.neighbourhoods
+//         .split("|")
+//         .map((neighName: string) => ({
+//           State: city.slug,
+//           neighborhood: neighName.trim().toLowerCase().replace(/\s+/g, "-").replace(/\.+$/, ""),
+//         }));
+//       neighborhoods.push(...cityNeighborhoods);
+//     }
+//   });
 
-  return neighborhoods;
-}
+//   return neighborhoods;
+// }
