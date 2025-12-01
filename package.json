@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node .\\extract-imagekit-urls.js && next build",
+    "build": "node ./extract-imagekit-urls.js && next build",
     "build-only": "next build",
     "start": "next start",
     "lint": "next lint",
-    "extract-urls": "node .\\extract-imagekit-urls.js"
+    "extract-urls": "node ./extract-imagekit-urls.js"
   },
   "dependencies": {
     "@next/third-parties": "^14.2.29",
