@@ -7,7 +7,6 @@ import Banner from "@/app/components/Home/Banner";
 import NavbarState from "@/app/components/State/NavbarState";
 import contactContent from "@/app/Data/content";
 import subdomainContent from "@/app/Data/FinalContent";
-import imagesData from "@/components/Content/images.json"
 
 const content: any = subdomainContent.subdomainData;
 const ContactInfo: any = contactContent.contactContent;
@@ -77,7 +76,7 @@ const Page = async () => {
         <Banner
           h1={contentData.h1Banner?.split(ContactInfo.location).join(Data?.name || ContactInfo.location)
             ?.split("[phone]").join(ContactInfo.No)}
-          image={imagesData.aboutImages.banner}
+          image={contentData.bannerImage}
           header={contentData.bannerQuote}
           p1={contentData.metaDescription?.split(ContactInfo.location).join(Data?.name || ContactInfo.location)
             ?.split("[phone]").join(ContactInfo.No)}
@@ -100,7 +99,7 @@ const Page = async () => {
             </div>
             <div className="w-full pt-10">
               <Image
-                src={`${imagesData.aboutImages.h2Image}`}
+                src={`${contentData.h2Image}`}
                 className="border rounded-lg shadow-lg  object-cover "
                 alt={contentData.h2Image.split("/").pop()?.split(".")[0] || "image"}
                 width={1000}

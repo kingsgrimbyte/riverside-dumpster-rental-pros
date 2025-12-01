@@ -4,7 +4,6 @@ import { RiMailFill, RiMapPin2Fill } from "react-icons/ri";
 import { headers } from "next/headers";
 import subdomainContent from "@/app/Data/FinalContent";
 import contactContent from "@/app/Data/content";
-import imagesData from "@/components/Content/images.json"
 
 const SubDomainData: any = subdomainContent.subdomainData;
 const ContactInfo: any = contactContent.contactContent;
@@ -28,7 +27,7 @@ const Footer = () => {
           <div className="flex w-fit flex-col justify-center gap-2 px-6 md:mt-8  md:w-full  md:flex-row md:items-start md:justify-around md:px-20 ">
             <div className="mt-4 flex h-32 items-center justify-center text-2xl md:mt-0  md:h-auto md:w-52">
               <Image
-                src={imagesData.globalImages.logo}
+                src={ContactInfo?.logoImage}
                 height={10000}
                 width={10000}
                 className="w-full object-cover "

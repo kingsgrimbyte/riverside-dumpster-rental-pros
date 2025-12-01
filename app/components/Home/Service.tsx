@@ -4,12 +4,10 @@ import { MdDoubleArrow } from "react-icons/md";
 import Link from "next/link";
 import contactContent from "@/app/Data/content";
 import subdomainContent from "@/app/Data/FinalContent";
-import imagesData from "@/components/Content/images.json";
 
 const ContactInfo: any = contactContent.contactContent;
 const content1: any = contactContent.servicePageContent;
 const content: any = subdomainContent.subdomainData;
-const serviceImages: any = imagesData.serviceImages;
 
 interface ServiceItem {
   imageUrl: string;
@@ -68,13 +66,13 @@ const Service = ({ value = "" }: any) => {
               <div className="h-14 w-14 overflow-hidden rounded-full object-cover md:h-full md:w-full md:rounded-none">
                 <Image
                   aria-hidden="true"
-                  src={`${serviceImages.subservices?.[index] || items.imageUrl}`}
+                  src={`${items.imageUrl}`}
                   unoptimized={true}
                   alt={
-                    (serviceImages.subservices?.[index] || items.imageUrl).split("/").pop()?.split(".")[0] || "image"
+                    items.imageUrl.split("/").pop()?.split(".")[0] || "image"
                   }
                   title={
-                    (serviceImages.subservices?.[index] || items.imageUrl).split("/").pop()?.split(".")[0] || "image"
+                    items.imageUrl.split("/").pop()?.split(".")[0] || "image"
                   }
                   width="900"
                   height="550"

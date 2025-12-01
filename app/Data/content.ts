@@ -734,7 +734,7 @@ const contactContent: any = {
     `/ContactInfo/${localImages.ContactInfo.logoImage}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
-  favicon: getValueOrDefault(`/ContactInfo/${localImages.ContactInfo.favicon}`, "DEFAULT: /favicon.ico"),
+  favicon: getValueOrDefault(`/ContactInfo/${localImages.ContactInfo?.favicon}`, "DEFAULT: /favicon.ico"),
   googleAnalytics: getValueOrDefault(
     contactDataJson?.googleAnalytics,
     "DEFAULT: GA_MEASUREMENT_ID",

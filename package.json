@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node .\\extract-imagekit-urls.js",
+    "build": "node .\\extract-imagekit-urls.js && next build",
+    "build-only": "next build",
     "start": "next start",
     "lint": "next lint",
     "extract-urls": "node .\\extract-imagekit-urls.js"

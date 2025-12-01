@@ -13,7 +13,7 @@ import Link from "next/link";
 import ZipAndNeighAccordian from "@/app/components/Home/ZipAndNeighAccordian";
 import Types from "@/app/components/Widgets/Types";
 // import Service from "@/app/Components/Service";
-import imagesData from "@/components/Content/images.json"
+
 import contactContent from "@/app/Data/content";
 import subdomainContent from "@/app/Data/FinalContent";
 import { headers } from "next/headers";
@@ -232,7 +232,7 @@ export default async function NeighborhoodPage({
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         name: `${ContactInfo.name}`,
-        image: `${imagesData.globalImages.logo}`,
+        image: `${ContactInfo.logoImage}`,
         address: {
           "@type": "PostalAddress",
           streetAddress: `${stateName[abbrevations.toUpperCase()]} ${ContactInfo.service}`,
@@ -314,7 +314,7 @@ export default async function NeighborhoodPage({
             .join(ContentData?.name || ContactInfo.location)
             ?.split("[phone]")
             .join(ContactInfo.No)}`}
-          image={imagesData.subdomainImages.banner}
+          image={ContentData.bannerImage}
           header={ContentData.bannerQuote}
           p1={`${ContentData?.metaDescription
             ?.split("[location]")
@@ -328,7 +328,7 @@ export default async function NeighborhoodPage({
             <Image
               height={1000}
               width={1000}
-              src={`${imagesData.subdomainImages.h2Image}`}
+              src={`${ContentData?.h2Image}`}
               className="h-full w-full  rounded-lg object-cover shadow-lg"
               alt={
                 ContentData?.h2Image.split("/").pop()?.split(".")[0] || "image"
@@ -440,7 +440,7 @@ export default async function NeighborhoodPage({
               <Image
                 height={10000}
                 width={10000}
-                src={`${imagesData.subdomainImages.h5Image}`}
+                src={`${ContentData.h5Image}`}
                 className=" h-[16rem] w-full rounded-lg object-cover shadow-lg"
                 alt={
                   ContentData.h5Image.split("/").pop()?.split(".")[0] || "image"
@@ -460,7 +460,7 @@ export default async function NeighborhoodPage({
               <Image
                 height={10000}
                 width={10000}
-                src={`${imagesData.subdomainImages.h6Image}`}
+                src={`${ContentData?.h6Image}`}
                 className=" h-[17rem] w-full rounded-lg object-cover  shadow-lg"
                 alt={
                   ContentData?.h6Image.split("/").pop()?.split(".")[0] ||

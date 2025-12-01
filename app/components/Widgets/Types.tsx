@@ -3,11 +3,9 @@ import React from "react";
 import Link from "next/link";
 import { MdDoubleArrow } from "react-icons/md";
 import contactContent from "@/app/Data/content";
-import imagesData from "@/components/Content/images.json";
 
 const ContactInfo: any = contactContent.contactContent;
 const data1: any = contactContent.typesJsonContent;
-const typesImages: any = imagesData.typesImages;
 
 const Types = ({value}:{value?:any}) => {
   // console.log(value)
@@ -38,7 +36,7 @@ const Types = ({value}:{value?:any}) => {
             <div className="flex h-60 justify-center object-cover">
               <Image
                 aria-hidden="true"
-                src={`${typesImages.subtypes?.[index] || items.imageUrl}`}
+                src={`${items.imageUrl}`}
                 alt={`${items.imageUrl.split("/").pop()?.split(".")[0] || "image"[0]}`}
                 title={`${items.imageUrl.split("/").pop()?.split(".")[0] || "image"[0]}`}
                 width="900"
@@ -62,7 +60,7 @@ const Types = ({value}:{value?:any}) => {
         ))}
       </div>
       <div className="block md:hidden pb-10">
-        {data.lists.map((item: any, index: number) => (
+        {data.lists.map((item: any) => (
           <div
             className=" rounded-2xl border   p-3 shadow-xl"
             key={item?.title}
@@ -71,7 +69,7 @@ const Types = ({value}:{value?:any}) => {
               <div className="h-14 w-14 overflow-hidden rounded-full object-cover">
                 <Image
                   aria-hidden="true"
-                  src={`${typesImages.subtypes?.[index] || item.imageUrl}`}
+                  src={`${item.imageUrl}`}
                   alt={`${item.imageUrl.split("/").pop()?.split(".")[0] || "image"}`}
                   title={`${item.imageUrl.split("/").pop()?.split(".")[0] || "image"}`}
                   width="900"
