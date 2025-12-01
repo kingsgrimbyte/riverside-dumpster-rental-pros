@@ -4,6 +4,7 @@ import Service from "@/app/components/Home/Service";
 import { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import Types from "../components/Widgets/Types";
+import imagesData from "@/components/Content/images.json";
 
 import contactContent from "@/app/Data/content";
 
@@ -29,7 +30,7 @@ const page = () => {
         <Banner
           h1={contentData.h1Banner?.split("[location]").join( ContactInfo.location)
             ?.split("[phone]").join(ContactInfo.No)}
-          image={contentData.bannerImage}
+          image={imagesData.typesImages.banner}
           header={contentData.bannerQuote}
           p1={contentData.metaDescription?.split("[location]").join( ContactInfo.location)
             ?.split("[phone]").join(ContactInfo.No)}

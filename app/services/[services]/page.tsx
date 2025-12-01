@@ -8,12 +8,14 @@ import Navbar from "@/app/components/Navbar";
 
 import contactContent from "@/app/Data/content";
 import subdomainContent from "@/app/Data/FinalContent";
+import imagesData from "@/components/Content/images.json";
 
 const ContactInfo: any = contactContent.contactContent;
 const data: any = contactContent.servicePageContent;
 const content: any = subdomainContent.subdomainData;
 
 const Servicedata = data?.serviceData;
+const serviceImages: any = imagesData.serviceImages;
 
 export function generateMetadata({ params }: { params: { services: string } }) {
   const serviceData: any = Servicedata.lists.find(
@@ -36,6 +38,12 @@ const page = ({ params }: { params: { services: string } }) => {
   const serviceData: any = Servicedata.lists.find(
     (service:any) => service.slug === params.services,
   );
+  
+  // Find the index of the current service to map to the correct image
+  const serviceIndex: number = Servicedata.lists.findIndex(
+    (service: any) => service.slug === params.services,
+  );
+  
   const headersList = headers();
   const subdomain = headersList.get("x-subdomain");
   const Data: any = content[subdomain as keyof typeof content];
@@ -73,9 +81,9 @@ const page = ({ params }: { params: { services: string } }) => {
             </div>
             <div className="w-full pt-10">
               <Image
-                src={serviceData.imageUrl}
+                src={`${serviceImages.subservices?.[serviceIndex] || serviceData.imageUrl}`}
                 className="h-80 rounded-lg border object-cover shadow-lg"
-                alt={serviceData.title.split("/").pop()?.split(".")[0] || "image"}
+                alt={(serviceImages.subservices?.[serviceIndex] || serviceData.imageUrl).split("/").pop()?.split(".")[0] || "image"}
                 width={1000}
                 height={1000}
               />

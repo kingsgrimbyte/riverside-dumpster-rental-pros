@@ -5,7 +5,7 @@ import Service from "@/app/components/Home/Service";
 import { headers } from "next/headers";
 import CtaSimple from "@/app/components/CtaSimple";
 import NavbarState from "@/app/components/State/NavbarState";
-
+import imagesData from "@/components/Content/images.json";
 import contactContent from "@/app/Data/content";
 import subdomainContent from "@/app/Data/FinalContent";
 
@@ -13,6 +13,7 @@ const ContactInfo: any = contactContent.contactContent;
 const data: any = contactContent.servicePageContent;
 const content: any = subdomainContent.subdomainData;
 const Servicedata = data?.serviceData;
+const serviceImages: any = imagesData.serviceImages;
 export function generateMetadata({ params }: { params: { services: string } }) {
   const serviceData: any = Servicedata.lists.find(
     (service: any) => service.slug === params.services,
@@ -45,6 +46,10 @@ const page = ({ params }: { params: { services: string } }) => {
   const subdomain = headersList.get("x-subdomain");
   const Data: any = content[subdomain as keyof typeof content];
   const locationName = Data?.name || ContactInfo.location;
+
+  const serviceIndex: number = Servicedata.lists.findIndex(
+    (service: any) => service.slug === params.services,
+  );
   return (
     <div className="">
       <NavbarState />
@@ -65,7 +70,9 @@ const page = ({ params }: { params: { services: string } }) => {
               <div className="text-3xl font-bold">
                 <h2>
                   {" "}
-                  {serviceData.title.split(ContactInfo.location).join(locationName)}
+                  {serviceData.title
+                    .split(ContactInfo.location)
+                    .join(locationName)}
                 </h2>
                 <br />
               </div>
@@ -82,10 +89,16 @@ const page = ({ params }: { params: { services: string } }) => {
             </div>
             <div className="w-full pt-10">
               <Image
-                src={serviceData.imageUrl}
+                src={`${serviceImages.subservices?.[serviceIndex] || serviceData.imageUrl}`}
                 className="h-80 rounded-lg border object-cover shadow-lg"
                 alt={
-                  serviceData.title.split("/").pop()?.split(".")[0] || "image"
+                  (
+                    serviceImages.subservices?.[serviceIndex] ||
+                    serviceData.imageUrl
+                  )
+                    .split("/")
+                    .pop()
+                    ?.split(".")[0] || "image"
                 }
                 width={1000}
                 height={1000}

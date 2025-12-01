@@ -10,7 +10,7 @@ import ReviewWidget from "../Widgets/ReviewWidget";
 import Navbar from "../Navbar";
 import Link from "next/link";
 import Types from "../Widgets/Types";
-
+import imagesData from "@/components/Content/images.json"
 import contactContent from "@/app/Data/content";
 import SubdomainContent from "@/app/Data/FinalContent";
 
@@ -52,7 +52,7 @@ const Hero = () => {
           {/* poster */}
           <Banner
             h1={homeData.h1Banner}
-            image={homeData.bannerImage}
+            image={imagesData.homeImages.banner}
             header={homeData.bannerQuote}
             p1={`${homeData?.metaDescription
               ?.split("[location]")
@@ -75,7 +75,7 @@ const Hero = () => {
                 height={10000}
                 width={10000}
                 unoptimized={true}
-                src={`${homeData.h2Image}`}
+                src={`${imagesData.homeImages.h2Image}`}
                 className=" h-full w-full rounded-lg object-cover shadow-lg"
                 alt={
                   homeData.h2Image.split("/").pop()?.split(".")[0] || "image"
@@ -102,7 +102,7 @@ const Hero = () => {
               <Image
                 height={10000}
                 width={10000}
-                src={`${homeData.h3Image}`}
+                src={`${imagesData.homeImages.h3Image}`}
                 unoptimized={true}
                 className=" h-full w-full rounded-lg object-cover shadow-lg"
                 alt={

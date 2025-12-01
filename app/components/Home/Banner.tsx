@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { FaPhoneVolume } from "react-icons/fa";
 import contactContent from "@/app/Data/content";
+import imagesData from "@/components/Content/images.json"
 
 const ContactInfo: any = contactContent.contactContent;
 
@@ -21,7 +22,7 @@ const Banner = ({
     <div className=" relative  h-[70vh] max-w-[2100px] duration-150 ease-in-out md:mt-0 md:h-[500px] ">
       <Image
         className="absolute h-[70vh] w-[100%] object-cover object-right  md:h-[500px] "
-        src={image? image:ContactInfo.bannerImage}
+        src={image? image:imagesData.globalImages.banner}
         alt="Banner_Image"
         width={900}
         height={900}

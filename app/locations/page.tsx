@@ -4,7 +4,7 @@ import Banner from "@/app/components/Home/Banner";
 import { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import { headers } from "next/headers";
-
+import imagesData from "@/components/Content/images.json"
 import contactContent from "@/app/Data/content";
 
 const ContactInfo: any = contactContent.contactContent;
@@ -47,7 +47,7 @@ const page = async () => {
       <div>
         <Banner
           h1={contentData.h1Banner}
-          image={contentData.bannerImage}
+          image={imagesData.locationPageImages.banner}
           header={contentData.bannerQuote}
           p1={contentData.metaDescription?.split("[location]").join( ContactInfo.location)
             ?.split("[phone]").join(ContactInfo.No)}

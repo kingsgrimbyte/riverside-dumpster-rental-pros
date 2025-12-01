@@ -4,7 +4,7 @@ import "./globals.css";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import Footer from "./components/Footer";
 import CallMobileButton from "./components/Widgets/CallMobileButton";
-// import ContactInfo from "@/components/Content/ContactInfo.json";
+import imagesData from "@/components/Content/images.json"
 
 import contactContent from "@/app/Data/content";
 
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href={ContactInfo.favicon} />
+        <link rel="icon" href={imagesData.globalImages.favicon} />
       </head>
       <GoogleAnalytics gaId={ContactInfo.googleAnalytics} />
       {/* <GoogleTagManager gtmId="" /> */}

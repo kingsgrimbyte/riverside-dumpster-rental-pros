@@ -6,6 +6,7 @@ import NavbarState from "@/app/components/State/NavbarState";
 import { headers } from "next/headers";
 import Navbar from "@/app/components/Navbar";
 import Types from "@/app/components/Widgets/Types";
+import imagesData from "@/components/Content/images.json";
 
 import contactContent from "@/app/Data/content";
 import subdomainContent from "@/app/Data/FinalContent";
@@ -72,7 +73,7 @@ const page = () => {
             .join(Data?.name || ContactInfo.location)
             ?.split("[phone]")
             .join(ContactInfo.No)}
-          image={contentData.bannerImage}
+          image={imagesData.typesImages.banner}
           header={contentData.bannerQuote
             ?.split(ContactInfo.location)
             .join(Data?.name || ContactInfo.location)

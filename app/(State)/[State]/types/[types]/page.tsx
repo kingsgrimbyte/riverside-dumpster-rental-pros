@@ -2,6 +2,7 @@ import React from "react";
 import { headers } from "next/headers";
 import NavbarState from "@/app/components/State/NavbarState";
 import SubTypePage from "@/app/components/Types/SubTypePage";
+import imagesData from "@/components/Content/images.json";
 
 import contactContent from "@/app/Data/content";
 import subdomainContent from "@/app/Data/FinalContent";
@@ -9,8 +10,8 @@ import subdomainContent from "@/app/Data/FinalContent";
 const ContactInfo: any = contactContent.contactContent;
 const data: any = contactContent.typesJsonContent;
 const content: any = subdomainContent.subdomainData;
-
 const Servicedata = data?.serviceData;
+const typesImages: any = imagesData.typesImages;
 
 export function generateMetadata({ params }: { params: { types: string } }) {
   const serviceData: any = Servicedata.lists.find(
@@ -46,10 +47,15 @@ export function generateMetadata({ params }: { params: { types: string } }) {
 }
 
 const page = ({ params }: { params: { types: string } }) => {
+  // Find the index of the current service to map to the correct image
+  const serviceIndex: number = Servicedata.lists.findIndex(
+    (service: any) => service.slug === params.types,
+  );
+  
   return (
     <div className="">
       <NavbarState />
-      <SubTypePage params={params} />
+      <SubTypePage params={params} serviceIndex={serviceIndex} />
     </div>
   );
 };

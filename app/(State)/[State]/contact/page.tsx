@@ -8,7 +8,7 @@ import Banner from "@/app/components/Home/Banner";
 import Navbar from "@/app/components/Navbar";
 import NavbarState from "@/app/components/State/NavbarState";
 import { headers } from "next/headers";
-
+import imagesData from "@/components/Content/images.json"
 import contactContent from "@/app/Data/content";
 import subdomainContent from "@/app/Data/FinalContent";
 
@@ -67,7 +67,7 @@ const page = () => {
         <Banner
           h1={contentData.h1Banner?.split(ContactInfo.location).join(Data?.name || ContactInfo.location)
             ?.split("[phone]").join(ContactInfo.No)}
-          image={contentData.bannerImage}
+          image={imagesData.contactImages.banner}
           header={contentData?.bannerQuote}
           p1={contentData.metaDescription?.split(ContactInfo.location).join(Data?.name || ContactInfo.location)
             ?.split("[phone]").join(ContactInfo.No)}
@@ -79,7 +79,7 @@ const page = () => {
           <div className="md:px-20 px-4 mt-10">
             <div className="gap-6  mt-10 grid grid-cols-1 md:grid-cols-2 items-center">
               <Image
-                src={`${contentData.h2Image}`}
+                src={`${imagesData.contactImages.h2Image}`}
                 width={500}
                 height={400}
                 title={contentData.h2Image.split("/").pop()?.split(".")[0] || "image"}
@@ -144,7 +144,7 @@ const page = () => {
           </div>
           <div>
             <Image
-              src={`${contentData.h3Image}`}
+              src={`${imagesData.contactImages.h3Image}`}
               className="border rounded-lg w-full h-[350px] shadow-lg object-cover"
               alt={contentData.h3Image.split("/").pop()?.split(".")[0] || "image"}
               width={1000}

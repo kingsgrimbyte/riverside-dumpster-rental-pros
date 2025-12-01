@@ -7,6 +7,7 @@ import { CheckCircle, XCircle } from "lucide-react";
 import CtaSimple from "@/app/components/CtaSimple";
 import Link from "next/link";
 import ProcessWidget from "../Widgets/ProcessWidget";
+import imagesData from "@/components/Content/images.json";
 
 import contactContent from "@/app/Data/content";
 import subdomainContent from "@/app/Data/FinalContent";
@@ -14,8 +15,9 @@ import subdomainContent from "@/app/Data/FinalContent";
 const ContactInfo: any = contactContent.contactContent;
 const data: any = contactContent.typesJsonContent;
 const content: any = subdomainContent.subdomainData;
+const typesImages: any = imagesData.typesImages;
 
-const SubTypePage = ({ params }: any) => {
+const SubTypePage = ({ params, serviceIndex }: any) => {
   const headersList = headers();
   const subdomain = headersList.get("x-subdomain");
   const Data: any = content[subdomain as keyof typeof content];
@@ -45,6 +47,7 @@ const SubTypePage = ({ params }: any) => {
         h1={serviceData.title}
         header=""
         p1={serviceData.shortDescription}
+        image={`${typesImages.subtypes?.[serviceIndex] || serviceData.imageUrl}`}
       />
       <div className="container mx-auto max-w-[1400px] px-4 py-12">
         {/* Hero Section */}
@@ -60,7 +63,7 @@ const SubTypePage = ({ params }: any) => {
           </div>
           <div className="flex justify-center">
             <Image
-              src={serviceData.h2Image}
+              src={`${typesImages.subtypes?.[serviceIndex] || serviceData.h2Image}`}
               className="h-72 w-full rounded-xl border  border-gray-100 object-cover"
               alt={serviceData.title.split("/").pop()?.split(".")[0] || "image"}
               width={400}
@@ -72,7 +75,7 @@ const SubTypePage = ({ params }: any) => {
         <div className="mb-16 grid grid-cols-1 items-center gap-10 md:grid-cols-2">
           <div className="flex justify-center">
             <Image
-              src={serviceData.overViewImage}
+              src={`${typesImages.subtypes?.[serviceIndex] || serviceData.overViewImage}`}
               className="h-72 w-full rounded-xl border  border-gray-100 object-cover"
               alt={serviceData.title.split("/").pop()?.split(".")[0] || "image"}
               width={400}
@@ -201,7 +204,7 @@ const SubTypePage = ({ params }: any) => {
                   className="group flex w-48 flex-col items-center rounded-lg border  border-gray-200 bg-gray-100 p-6 transition hover:bg-main hover:text-white hover:shadow-lg"
                 >
                   <Image
-                    src={serviceData.idealImage}
+                    src={`${typesImages.subtypes?.[idx] || serviceData.idealImage}`}
                     width={56}
                     height={56}
                     alt={type.title}

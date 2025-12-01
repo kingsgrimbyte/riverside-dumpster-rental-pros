@@ -6,6 +6,7 @@ import { FaCrown } from "react-icons/fa6";
 import Banner from "@/app/components/Home/Banner";
 import Navbar from "../components/Navbar";
 import contactContent from "@/app/Data/content";
+import imagesData from "@/components/Content/images.json"
 
 const ContactInfo: any = contactContent.contactContent;
 const aboutContent: any = contactContent.aboutContent;
@@ -39,7 +40,7 @@ const page = () => {
                 .join(ContactInfo.location)
                 ?.split("[phone]")
                 .join(ContactInfo.No)}
-              image={aboutContent.bannerImage}
+              image={imagesData.aboutImages.banner}
               header={aboutContent.bannerQuote}
               p1={aboutContent.metaDescription
                 ?.split("[location]")
@@ -72,7 +73,7 @@ const page = () => {
                 </div>
                 <div className="w-full pt-10">
                   <Image
-                    src={`${aboutContent.h2Image}`}
+                    src={`${imagesData.aboutImages.h2Image}`}
                     className="rounded-lg border object-cover  shadow-lg "
                     alt={
                       aboutContent.h2Image.split("/").pop()?.split(".")[0] ||

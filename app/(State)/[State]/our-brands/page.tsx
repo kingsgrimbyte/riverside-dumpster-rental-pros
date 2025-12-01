@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import NavbarState from "@/app/components/State/NavbarState";
-
+import imagesData from "@/components/Content/images.json"
 import contactContent from "@/app/Data/content";
 
 const ContactInfo: any = contactContent.contactContent;
@@ -34,7 +34,7 @@ const page = () => {
           .join(ContactInfo.location)
           ?.split("[phone]")
           .join(ContactInfo.No)}
-        image={contentData.bannerImage}
+        image={imagesData.ourBrandImages.banner}
         header=""
         p1={contentData.metaDescription
           .split(ContactInfo.location)

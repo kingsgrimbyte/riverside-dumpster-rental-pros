@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaPhoneVolume } from "react-icons/fa";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-
+import imagesData from "@/components/Content/images.json"
 import contactContent from "@/app/Data/content";
 
 const ContactInfo: any = contactContent.contactContent;
@@ -23,7 +23,7 @@ const Navbar = () => {
             <div className="flex ">
               <Link href={ContactInfo?.baseUrl} aria-label="Home">
                 <Image
-                  src={ContactInfo?.logoImage}
+                  src={imagesData.globalImages.logo}
                   className=" h-full w-40 object-contain md:mr-3 md:w-56 "
                   alt="logo of the company"
                   title=""

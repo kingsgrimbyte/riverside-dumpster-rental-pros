@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { FaPhoneVolume } from "react-icons/fa6";
 import Banner from "../Home/Banner";
-
+import imagesData from "@/components/Content/images.json"
 import contactContent from "@/app/Data/content";
 
 const ContactInfo: any = contactContent.contactContent;
@@ -19,7 +19,7 @@ const Page = () => {
       <Banner
         h1={contentData.h1Banner?.split("[location]").join( ContactInfo.location)
           ?.split("[phone]").join(ContactInfo.No)}
-        image={contentData.bannerImage}
+        image={imagesData.contactImages.banner}
         header={contentData?.bannerQuote}
         p1={contentData.metaDescription?.split("[location]").join( ContactInfo.location)
           ?.split("[phone]").join(ContactInfo.No)}
@@ -31,7 +31,7 @@ const Page = () => {
         <div className="md:px-20 px-4 mt-10">
           <div className="gap-6  mt-10 grid grid-cols-1 md:grid-cols-2 items-center">
             <Image
-              src={`${contentData.h2Image}`}
+              src={`${imagesData.contactImages.h2Image}`}
               width={500}
               height={400}
               title={contentData.h2Image.split("/").pop()?.split(".")[0] || "image"}
@@ -96,7 +96,7 @@ const Page = () => {
         </div>
         <div>
           <Image
-            src={`${contentData.h3Image}`}
+            src={`${imagesData.contactImages.h3Image}`}
             className="border rounded-lg w-full h-[350px] shadow-lg object-cover"
             alt={contentData.h3Image.split("/").pop()?.split(".")[0] || "image"}
             width={1000}

@@ -17,9 +17,11 @@ import Types from "@/app/components/Widgets/Types";
 import contactContent from "@/app/Data/content";
 import subdomainContent from "@/app/Data/FinalContent";
 import { headers } from "next/headers";
+import imagesData from "@/components/Content/images.json";
 
 const ContactInfo: any = contactContent.contactContent;
 const home: any = contactContent.homePageContent;
+const subdomainImages: any = imagesData.subdomainImages;
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -130,6 +132,7 @@ export async function generateMetadata({ params }: SubdomainPageProps) {
     },
   };
 }
+
 export default async function SubdomainPage({ params }: SubdomainPageProps) {
   // console.log(params)
   const { State } = params;
@@ -182,7 +185,7 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         name: `${ContactInfo.name}`,
-        image: `${ContactInfo.logoImage}`,
+        image: `${imagesData.globalImages.logo || ContactInfo.logoImage}`,
         address: {
           "@type": "PostalAddress",
           streetAddress: `${stateName[abbrevations.toUpperCase()]} ${ContactInfo.service}`,
@@ -265,7 +268,7 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
             .join(
               ContactInfo.No,
             )} ${ContentData.zipCodes && ContentData.zipCodes.split("|")[0]}`}
-          image={ContentData.bannerImage}
+          image={ subdomainImages.banner}
           header={ContentData.bannerQuote}
           p1={`${ContentData?.metaDescription
             ?.split("[location]")
@@ -282,10 +285,10 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
             <Image
               height={1000}
               width={1000}
-              src={`${ContentData?.h2Image}`}
+              src={`${ subdomainImages.h2Image}`}
               className="h-full w-full  rounded-lg object-cover shadow-lg"
               alt={
-                ContentData?.h2Image.split("/").pop()?.split(".")[0] || "image"
+                ( subdomainImages.h2Image).split("/").pop()?.split(".")[0] || "image"
               }
             />
           </div>
@@ -392,13 +395,13 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
               <Image
                 height={10000}
                 width={10000}
-                src={`${ContentData.h5Image}`}
+                src={`${ subdomainImages.h5Image}`}
                 className=" h-[16rem] w-full rounded-lg object-cover shadow-lg"
                 alt={
-                  ContentData.h5Image.split("/").pop()?.split(".")[0] || "image"
+                  ( subdomainImages.h5Image).split("/").pop()?.split(".")[0] || "image"
                 }
                 title={
-                  ContentData.h5Image.split("/").pop()?.split(".")[0] || "image"
+                  (subdomainImages.h5Image).split("/").pop()?.split(".")[0] || "image"
                 }
               />
             </div>
@@ -412,13 +415,13 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
               <Image
                 height={10000}
                 width={10000}
-                src={`${ContentData?.h6Image}`}
+                src={`${ subdomainImages.h6Image}`}
                 className=" h-[17rem] w-full rounded-lg object-cover  shadow-lg"
                 alt={
-                  ContentData?.h6Image.split("/").pop()?.split(".")[0] ||
+                  ( subdomainImages.h6Image).split("/").pop()?.split(".")[0] ||
                   "image"
                 }
-                title={`${ContentData.h6Image.split("/").pop()?.split(".")[0] || "image"} ,${ContentData.name}`}
+                title={`${( subdomainImages.h6Image).split("/").pop()?.split(".")[0] || "image"} ,${ContentData.name}`}
               />
             </div>
             <div className="flex flex-col justify-center    ">
@@ -522,10 +525,10 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
             </div>
             <div className="">
               <Image
-                src={`${ContentData?.h7Image}`}
+                src={`${ subdomainImages.h7Image}`}
                 className="h-[100%] w-full rounded-lg border object-cover shadow-lg "
                 alt={
-                  ContentData?.h7Image.split("/").pop()?.split(".")[0] ||
+                  ( subdomainImages.h7Image).split("/").pop()?.split(".")[0] ||
                   "image"
                 }
                 width={1000}

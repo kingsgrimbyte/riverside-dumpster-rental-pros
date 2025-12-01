@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import brandsContent from "@/app/Data/content";
-
+import imagesData from "@/components/Content/images.json"
 const ContactInfo:any = brandsContent.contactContent;
 const contentData:any[any] = brandsContent.brandsContent;
 
@@ -28,7 +28,7 @@ const page = () => {
       <Navbar />
       <Banner
         h1={contentData.h1Banner}
-        image={contentData.bannerImage}
+        image={imagesData.ourBrandImages.banner}
         header=""
         p1={contentData.metaDescription
           ?.split("[location]")
@@ -50,7 +50,7 @@ const page = () => {
           <Image
             height={10000}
             width={10000}
-            src={`${contentData.h2Image}`}
+            src={imagesData.ourBrandImages.h2Image}
             className=" h-full w-full rounded-lg object-cover shadow-lg"
             alt={contentData.h2Image.split(".")[0]}
             title={contentData.h2Image.split(".")[0]}
